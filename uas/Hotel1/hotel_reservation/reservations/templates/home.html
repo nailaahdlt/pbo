@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Reservation</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        h2 {
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .room-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .reservation-card {
+            background: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid #007BFF;
+        }
+        button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        button.cancel {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Welcome to Our Hotel</h2>
+
+        {% if user.is_authenticated %}
+            <h3>Hello, {{ user.username }}!</h3>
+
+            <h4>Available Rooms</h4>
+            {% for room in rooms %}
+                <div class="room-card">
+                    {% if room.image %}
+                        <img src="{{ room.image.url }}" alt="{{ room.name }}" style="width: 100%; height: auto;">
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                    <strong>Room:</strong> {{ room.room_number }} <br>
+                    <strong>Capacity:</strong> {{ room.capacity }} persons <br>
+                    <strong>Price:</strong> Rp {{ room.price_per_night }} per night <br>
+                    <strong>Description:</strong> {{ room.description }} <br>
+
+                    {% if room.gambar %}
+                        <img src="{{ room.gambar.url }}" alt="Room Image">
+                    {% endif %}
+
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ reservation_form.as_p }}
+                        <input type="hidden" name="room" value="{{ room.id }}">
+                        <button type="submit">Reserve this Room</button>
+                    </form>
+                </div>
+            {% endfor %}
+
+            <h4>Your Reservations</h4>
+            {% for reservation in reservations %}
+                <div class="reservation-card">
+                    <strong>Room:</strong> {{ reservation.room.room_number }} <br>
+                    <strong>Check-in:</strong> {{ reservation.check_in_date }} <br>
+                    <strong>Check-out:</strong> {{ reservation.check_out_date }} <br>
+                    <form method="post" action="{% url 'cancel_reservation' reservation.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="cancel">Cancel Reservation</button>
+                    </form>
+                </div>
+            {% empty %}
+                <p>You have no reservations.</p>
+            {% endfor %}
+            
+        {% else %}
+            <h3>Please log in to make a reservation.</h3>
+            <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a>
+        {% endif %}
+    </div>
+
+</body>
+</html>

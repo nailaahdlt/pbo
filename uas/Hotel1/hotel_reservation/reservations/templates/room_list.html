@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Room List</title>
+</head>
+<body>
+    <h1>Available Rooms</h1>
+    <form method="get">
+        <input type="text" name="search" placeholder="Search rooms" />
+        <input type="number" name="min_price" placeholder="Min price" />
+        <input type="number" name="max_price" placeholder="Max price" />
+        <button type="submit">Search</button>
+    </form>
+    
+    <ul>
+        {% for room in rooms %}
+            <li>
+                <img src="{{ media room.image.url }}" alt="{{ room.name }}" style="width: 200px; height: auto;">
+                <p>{{ room.name }} - {{ room.room_type }} - Rp {{ room.price_per_night }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

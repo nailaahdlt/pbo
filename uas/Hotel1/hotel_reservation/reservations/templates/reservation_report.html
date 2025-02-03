@@ -1,0 +1,23 @@
+<h1>Reservation Report</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Room</th>
+            <th>User</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.room.name }}</td>
+                <td>{{ reservation.user.username }}</td>
+                <td>{{ reservation.check_in_date }}</td>
+                <td>{{ reservation.check_out_date }}</td>
+                <td>{{ reservation.status }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reservation for {{ room.name }}</title>
+</head>
+<body>
+    <h1>Reservasi Kamar: {{ room.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Pesan</button>
+    </form>
+    <a href="{% url 'room_list' %}">Kembali ke Daftar Kamar</a>
+</body>
+</html>

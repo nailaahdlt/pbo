@@ -1,0 +1,124 @@
+/* style.css */
+
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body dan background */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    color: #333;
+    padding: 20px;
+}
+
+/* Kontainer utama */
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Heading */
+h2 {
+    text-align: center;
+    color: #007BFF;
+    margin-bottom: 20px;
+}
+
+h3, h4 {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* Room card styling */
+.room-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: #fafafa;
+}
+
+.room-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Reservation card styling */
+.reservation-card {
+    background-color: #e7f1ff;
+    border-left: 4px solid #007BFF;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+/* Form elements */
+form {
+    margin-top: 10px;
+}
+
+input[type="hidden"] {
+    display: none;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Button styling */
+button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+/* Tombol khusus untuk cancel */
+button.cancel {
+    background-color: #dc3545;
+}
+
+button.cancel:hover {
+    background-color: #c82333;
+}
+
+/* Link styling */
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registrasi</title>
+</head>
+<body>
+    <h1>Registrasi Pengguna</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Daftar</button>
+    </form>
+    <a href="{% url 'login' %}">Sudah punya akun? Masuk</a>
+</body>
+</html>
